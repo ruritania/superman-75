@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="https://code.highcharts.com/stock/highstock.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script type="text/javascript">
+			$(function () {
+			    $('#container').highcharts({
+			        chart: {
+			            zoomType: 'x'
+			        },
+			        title: {
+			            text: 'US Confidence in Newspapers - A Great Deal or Quite a Lot',
+			            style: {
+			            	fontSize: "14px",
+			            	color: "#333333"
+			            }
+			        },
+			        subtitle: {
+			            text: 'Source: Gallup'
+			        },
+			        xAxis: [{
+            			type: 'datetime',
+			            plotBands: [{
+			                from: Date.UTC(2000, 0, 1),
+			                to: Date.UTC(2019, 0, 1),
+			                color: '#EAEAEE',
+			                label: {
+			                    text: '2000s',
+			                    align: 'center',
+			                    verticalAlign: 'bottom',
+			                    y: -6
+			                }
+			            }]
+			        }],
+			        plotOptions: {
+			            series: {
+			                connectNulls: true,
+			                step: 'left',
+			                marker: {
+			                    enabled: false,
+			                    symbol: 'circle'
+			                },
+		                    /*events: {
+		                        click: function () {
+		                            this.update({
+						                color: '#FF9800'
+						            }); 
+								}
+		                    }*/
+			            }
+			        },
+			        tooltip: {
+			        	useHTML: true,
+			            style: {
+			            	width: "500px"
+			            }
+			        },
+			        yAxis: [{ // 0 yAxis
+			            labels: {
+			                format: '{value} people',
+			                style: {
+			                    color: "#C4C7D2"
+			                }
+			            },
+			            title: {
+			                text: 'Immigration',
+			                style: {
+			                    color: "#C4C7D2"
+			                }
+			            },
+			            opposite: true,
+			            visible: false
+
+			        }, { // 1 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'Interplanetary missions',
+			                style: {
+			                    color: "#85C6C6"
+			                }
+			            },
+			            labels: {
+			                format: '{value} misisons',
+			                style: {
+			                    color: "#85C6C6"
+			                }
+			            },
+			            visible: false,
+			            floor: 0,
+			            ceiling: 20
+
+			        }, { // 2 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'US Military Abroad',
+			                style: {
+			                    color: "#9BBABA"
+			                }
+			            },
+			            labels: {
+			                format: '{value} people',
+			                style: {
+			                    color: "#9BBABA"
+			                }
+			            },
+			            opposite: true,
+			            visible: false
+			        }, { // 3 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'Doomsday Clock',
+			                style: {
+			                    color: '#A0E0E0'
+			                }
+			            },
+			            labels: {
+			                format: '{value} minutes to midnight',
+			                style: {
+			                    color: '#A0E0E0'
+			                }
+			            },
+			            opposite: true,
+			            visible: false,
+			            floor: 0,
+			            ceiling: 20
+
+			        }, { // 4 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'Trust newspapers a great deal / quite a lot',
+			                style: {
+			                    color: '#AED9D9'
+			                }
+			            },
+			            labels: {
+			                format: '{value}%',
+			                style: {
+			                    color: '#AED9D9'
+			                }
+			            },
+			            opposite: true,
+			            visible: false,
+			            min: 0,
+			            max: 100,
+			            floor: 0,
+			            ceiling: 100,
+			            startOnTick: false,
+			            endOnTick: false
+
+			        }],
+			        tooltip: {
+			            shared: true,
+			            xDateFormat: '%Y'
+			        },
+			        series: [{
+			            name: 'Immigration',
+			            type: 'line',
+			            lineWidth: 2,
+			            data: [448572,487918,648743,857046,812870,1026499,1100735,1285349,782870,751786,1041570,878587,838172,1197892,1218480,326700,298826,295403,110618,141132,430001,805228,309556,522919,706896,294314,304488,335175,307255,279678,241700,97139,35576,23068,29470,34956,36329,50244,67895,82998,70756,51776,28781,23725,28551,38119,108721,147292,170570,188317,249187,205717,265520,170434,208177,237790,321625,326867,253265,260686,265398,271344,283763,306260,292248,296697,323040,361972,454448,358579,373326,370478,384685,398515,393919,385378,499093,458755,589810,394244,524295,595014,533624,550052,541811,568149,600027,599889,641346,1090172,1535872,1826595,973445,903916,803993,720177,915560,797847,653206,644787,841002,1058902,1059356,703542,957883,1122257,1266129,1052415,1107126,1130818,1042625,1062040,1031631,990553,null,null,null,null,null,null,null],
+				        color: '#C4C7D2',
+			            tooltip: {
+           					valueDecimals: 0,
+			                valueSuffix: ' people'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+			        },{
+			            name: 'Interplanetary missions',
+			            type: 'line',
+			            lineWidth: 1,
+			            yAxis: 1,
+			            data: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,5,2,2,2,5,0,4,2,5,9,2,5,5,4,3,4,0,2,0,2,3,0,0,0,0,0,0,0,0,0,0,2,1,0,1,0,1,0,3,2,3,3,0,2,1,2,1,2,1,2,0,3,0,3,0,2,0,0,null,null,null,null,null],
+				        color: '#85C6C6',
+			            tooltip: {
+			                valueSuffix: ' NASA missions'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+
+			        },{
+			            name: 'US Military Abroad',
+			            type: 'line',
+			            lineWidth: 1,
+			            yAxis: 2,
+			            data: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1460261,2547778,3240668,3555067,3279579,2930863,2795460,2758069,2598015,2492449,2492037,2552912,2687690,2695240,2690141,2723800,3229209,3411931,3489588,3449271,2983868,2626785,2356301,2231908,2157023,2104795,2083581,2074543,2062404,2027494,2050826,2082897,2108612,2123349,2138157,2151032,2169112,2174217,2138213,2130229,2046144,1986259,1807177,1705103,1610490,1518224,1471722,1438562,1406830,1385703,1384338,1385116,1411634,1434377,1426836,1426836,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
+				        color: '#9BBABA',
+			            tooltip: {
+			                valueSuffix: ' people'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+			        },{
+			            name: 'Doomsday Clock',
+			            type: 'line',
+			            lineWidth: 1,
+			            yAxis: 3,
+			            data: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,7,null,3,null,null,null,2,null,null,null,null,null,null,7,null,null,12,null,null,null,null,7,10,null,null,12,null,9,null,null,null,null,null,7,4,null,null,3,null,null,null,6,null,10,17,null,null,null,14,null,null,9,null,null,null,7,null,null,null,null,5,null,null,6,null,5,null,null,3,null,null,null,null,null],
+				        color: '#A0E0E0',
+			            tooltip: {
+			                valueSuffix: ' minutes to midnight'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+			        },{
+			            name: 'Trust newspapers',
+			            type: 'line',
+			            lineWidth: 2,
+			            yAxis: 4,
+			            data: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,39,null,null,null,null,null,51,null,35,null,38,34,35,37,31,36,null,39,37,32,31,29,30,32,35,33,33,37,36,35,33,30,28,30,22,24,25,25,28,25,23,22,24,null,null,null,null,null],
+				        color: '#D9042B',
+			            tooltip: {
+			                valueSuffix: '%'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+			        },{
+					    type : 'flags',
+					    name: 'Superman Timeline',
+					    yAxis: 4,
+					    lineWidth: 0,
+					    style: {
+							fontSize: '9px',
+							fontWeight: 'normal',
+							textAlign: 'center',
+							color: '#FFFFFF',
+							padding: '3px'
+						},
+					    shape : 'url(shield-01.png)',
+					    stackDistance: 40,
+					    showInLegend: false,
+					    fillColor: '#D9042B',
+						color: '#FFFFFF',
+					    data : [/*{
+					        x : Date.UTC(1938, 0, 1),
+					        y: 90,
+					        title : '1938',
+					        text : 'Superman debuts in Action Comics #1,<br />as does Lois Lane'
+					    },{
+					        x : Date.UTC(1940, 0, 1),
+					        y: 80,
+					        title : '1940',
+					        text : 'Clark Kent starts work at The Daily Planet<br />and faces off against Lex Luthor for the first time'
+					    },{
+					        x : Date.UTC(1941, 0, 1),
+					        y: 70,
+					        title : '1941',
+					        text : 'Fleischer Studios make Superman cartoons<br />using a revolutionary rotoscoping technique'
+					    },{
+					        x : Date.UTC(1946, 0, 1),
+					        y: 86,
+					        title : '1946',
+					        text : 'Superman, having dispatched the Nazis,<br />takes on the KKK'
+					    },{
+					        x : Date.UTC(1947, 0, 1),
+					        y: 76,
+					        title : '1947',
+					        text : 'Siegel & Shuster sue to end their contracts<br />& DC Comics fires them'
+					    },{
+					        x : Date.UTC(1948, 0, 1),
+					        y: 66,
+					        title : '1948',
+					        text : 'Kirk Alyn plays Superman in a 15 part serial<br />& Siegel wins rights to Superboy'
+					    },{
+					        x : Date.UTC(1952, 0, 1),
+					        y: 90,
+					        title : '1952',
+					        text : 'George Reeves plays Superman in a TV serial<br />& surprised by how popular he becomes'
+					    },{
+					        x : Date.UTC(1955, 0, 1),
+					        y: 80,
+					        title : '1955',
+					        text : "Krypto the Superdog arrives,<br />having taken the long way round from Krypton"
+					    }
+					    ,{
+					        x : Date.UTC(1958, 0, 1),
+					        y: 70,
+					        title : '1958',
+					        text : "Alien villain Brainiac makes his first appearance"
+					    },{
+					        x : Date.UTC(1959, 0, 1),
+					        y: 90,
+					        title : '1959',
+					        text : "The first appearances of Bizarro, Supergirl<br />and Beppo the Supermonkey"
+					    },{
+					        x : Date.UTC(1960, 0, 1),
+					        y: 80,
+					        title : '1960',
+					        text : "Superman joins the Justice League<br />along with Batman & Wonder Woman"
+					    },{
+					        x : Date.UTC(1961, 0, 1),
+					        y: 70,
+					        title : '1961',
+					        text : 'First appearance of the Kryptonian super villain General Zod'
+					    },{
+					        x : Date.UTC(1966, 0, 1),
+					        y: 90,
+					        title : '1966',
+					        text : "<em>It's Superman!</em> musical opens on Broadway"
+					    },{
+					        x : Date.UTC(1969, 0, 1),
+					        y: 80,
+					        title : '1969',
+					        text : "The introduction of multiple Supermen in parallel universes,<br />one of whom is already married to Lois"
+					    },{
+					        x : Date.UTC(1971, 0, 1),
+					        y: 90,
+					        title : '1971',
+					        text : "Clark Kent leaves print behind<br />& becomes a TV news anchor"
+					    },{
+					        x : Date.UTC(1973, 0, 1),
+					        y: 80,
+					        title : '1973',
+					        text : "At one point in the 70s, Shuster, now working as a courier,<br />is given a parcel to deliver to DC Comics.<br />They give him $100 and tell him to never come back"
+					    },{
+					        x : Date.UTC(1975, 0, 1),
+					        y: 70,
+					        title : '1975',
+					        text : "Warner awards Siegel and Shuster pensions and credits<br />on the character they created"
+					    },{
+					        x : Date.UTC(1978, 0, 1),
+					        y: 90,
+					        title : '1978',
+					        text : "Christopher Reeve delivers a peerless Superman<br />in Richard Donner's <em>Superman The Movie</em>"
+					    },{
+					        x : Date.UTC(1980, 0, 1),
+					        y: 80,
+					        title : '1980',
+					        text : "Kneel before Zod! in the form of Terence Stamp<br />playing the Kryptonian villain in <em>Superman II</em>"
+					    },{
+					        x : Date.UTC(1981, 0, 1),
+					        y: 70,
+					        title : '1981',
+					        text : "\"When Justice is gone, there's always Force\"<br /> Laurie Anderson's <em>O Superman</em> is an unlikely hit"
+					    },{
+					        x : Date.UTC(1983, 0, 1),
+					        y: 85,
+					        title : '1983',
+					        text : "Together at last: Richard Pryor & Robert Vaughan<br />are the villains in Superman III"
+					    },{
+					        x : Date.UTC(1986, 0, 1),
+					        y: 90,
+					        title : '1986',
+					        text : "John Byrne's <em>Man of Steel</em><br />rewrites Superman's origins from the ground up"
+					    },{
+					        x : Date.UTC(1987, 0, 1),
+					        y: 80,
+					        title : '1987',
+					        text : "<em>Superman IV: The Quest for Peace</em> slashes first the budget<br />and then the popularity of the earlier films"
+					    },{
+					        x : Date.UTC(1992, 0, 1),
+					        y: 90,
+					        title : '1992',
+					        text : "Both Superman and one of his creators Joe Shuster, die.<br />Only Superman comes back to life, later."
+					    },{
+					        x : Date.UTC(1993, 0, 1),
+					        y: 80,
+					        title : '1993',
+					        text : "TV Show <em>Lois & Clark</em> stars Teri Hatcher as Lois Lane<br />and Dean Cain as Superman"
+					    },{
+					        x : Date.UTC(1996, 0, 1),
+					        y: 70,
+					        title : '1996',
+					        text : "Lois and Clark finally get married"
+					    },{
+					        x : Date.UTC(1998, 0, 1),
+					        y: 85,
+					        title : '1998',
+					        text : "Superman temporarily loses his powers<br />and becomes the electricity powered Superman Blue"
+					    },{
+					        x : Date.UTC(1999, 0, 1),
+					        y: 75,
+					        title : '1999',
+					        text : "Jerry Siegel dies"
+					    },*/{
+					        x : Date.UTC(2001, 0, 1),
+					        y: 80,
+					        title : '2001',
+					        text : "The <em>Smallville</em> TV show features a teenage Clark Kent,<br />not yet Superman, played by Tom Welling"
+					    },{
+					        x : Date.UTC(2005, 0, 1),
+					        y: 70,
+					        title : '2005',
+					        text : "In yet another multiversal crisis,<br />Superboy punches reality into a new shape"
+					    },{
+					        x : Date.UTC(2006, 0, 1),
+					        y: 85,
+					        title : '2006',
+					        text : "Brandon Routh stars as Superman in <em>Superman Returns</em>.<br />He doesn't return."
+					    },{
+					        x : Date.UTC(2009, 0, 1),
+					        y: 75,
+					        title : '2009',
+					        text : "A court tells Warners to start a Superman film by 2011<br />or risk legal action over ownership of the character"
+					    },{
+					        x : Date.UTC(2013, 0, 1),
+					        y: 80,
+					        title : '2013',
+					        text : "9th Circuit Court of Appeals effectively rules<br />DC Comics as sole owners of the Superman copyright<br />and Warners releases movie <em>Man of Steel</em>"
+					    }]
+			        }]
+
+			    });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="container" style="width:100%; height:400px;"></div>
+	</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="https://code.highcharts.com/stock/highstock.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script type="text/javascript">
+			$(function () {
+			    $('#container').highcharts({
+			        chart: {
+			            zoomType: 'x'
+			        },
+			        title: {
+			            text: 'US billionaires',
+			            style: {
+			            	fontSize: "14px",
+			            	color: "#333333"
+			            }
+			        },
+			        subtitle: {
+			            text: 'Source: Forbes rankings'
+			        },
+			        xAxis: [{
+            			type: 'datetime',
+			            plotBands: [{
+			                from: Date.UTC(2000, 0, 1),
+			                to: Date.UTC(2015, 0, 1),
+			                color: '#EAEAEE',
+			                label: {
+			                    text: '2000s',
+			                    align: 'center',
+			                    verticalAlign: 'bottom',
+			                    y: -6
+			                }
+			            }]
+			        }],
+			        plotOptions: {
+			            series: {
+			                connectNulls: true,
+			                step: 'left',
+			                marker: {
+			                    enabled: false,
+			                    symbol: 'circle'
+			                },
+		                    /*events: {
+		                        click: function () {
+		                            this.update({
+						                color: '#FF9800'
+						            }); 
+								}
+		                    }*/
+			            }
+			        },
+			        tooltip: {
+			        	useHTML: true,
+			            style: {
+			            	width: "500px"
+			            }
+			        },
+			        yAxis: [{ // 0 yAxis
+			            labels: {
+			                format: '{value}/100k',
+			                style: {
+			                    color: "#C4C7D2"
+			                }
+			            },
+			            title: {
+			                text: 'Crime rate',
+			                style: {
+			                    color: "#C4C7D2"
+			                }
+			            },
+			            opposite: true,
+			            visible: false
+
+			        }, { // 1 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'Urban population',
+			                style: {
+			                    color: "#7E8AA2"
+			                }
+			            },
+			            labels: {
+			                format: '{value}%',
+			                style: {
+			                    color: "#7E8AA2"
+			                }
+			            },
+			            visible: false,
+			            floor: 0,
+			            ceiling: 100
+
+			        }, { // 2 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'Prison population',
+			                style: {
+			                    color: "#BACAE8"
+			                }
+			            },
+			            labels: {
+			                format: '{value} prisoners / 100k',
+			                style: {
+			                    color: "#BACAE8"
+			                }
+			            },
+			            opposite: true,
+			            visible: false
+			        }, { // 3 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'Inequality',
+			                style: {
+			                    color: '#949CB0'
+			                }
+			            },
+			            labels: {
+			                format: '{value}%',
+			                style: {
+			                    color: '#949CB0'
+			                }
+			            },
+			            opposite: true,
+			            visible: false
+
+			        }, { // 4 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'Minimum wage',
+			                style: {
+			                    color: '#ABB0C1'
+			                }
+			            },
+			            labels: {
+			                format: '$ {value}',
+			                style: {
+			                    color: '#ABB0C1'
+			                }
+			            },
+			            opposite: true,
+			            visible: false
+
+			        }, { // 5 yAxis
+			            gridLineWidth: 0,
+			            title: {
+			                text: 'No. billionaires',
+			                style: {
+			                    color: '#FF9800'
+			                }
+			            },
+			            labels: {
+			                format: '{value} billionaires',
+			                style: {
+			                    color: '#FF9800'
+			                }
+			            },
+			            opposite: true,
+			            visible: false
+
+			        }],
+			        tooltip: {
+			            shared: true,
+			            xDateFormat: '%Y'
+			        },
+			        series: [{
+			            name: 'Urban population',
+			            type: 'line',
+			            lineWidth: 1,
+			            yAxis: 1,
+			            data: [39.6,null,null,null,null,null,null,null,null,null,45.6,null,null,null,null,null,null,null,null,null,51.2,null,null,null,null,null,null,null,null,null,56.1,null,null,null,null,null,null,null,null,null,56.5,null,null,null,null,null,null,null,null,null,64.0,null,null,null,null,null,null,null,null,null,69.9,null,null,null,null,null,null,null,null,null,73.6,null,null,null,null,null,null,null,null,null,73.7,null,null,null,null,null,null,null,null,null,75.2,null,null,null,null,null,null,null,null,null,79.0,null,null,null,null,null,null,null,null,null,80.7],
+				        color: '#7E8AA2',
+			            tooltip: {
+			                valueSuffix: '%'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365
+
+			        },{
+			            name: 'US top decile income share',
+			            type: 'line',
+			            lineWidth: 1,
+			            yAxis: 3,
+			            data: [null,null,null,null,null,null,null,null,null,null,40.60,40.80,41.10,41.00,41.50,40.10,44.10,40.50,40.10,40.30,39.00,43.20,43.70,41.50,44.40,46.40,45.70,46.70,49.30,46.70,43.90,44.50,46.40,45.60,45.80,44.50,46.60,44.20,44.10,45.50,45.30,41.90,36.10,33.70,32.50,34.40,36.70,34.40,35.00,34.80,35.60,34.20,33.20,32.30,33.60,33.90,33.50,33.00,33.60,34.00,33.50,34.30,33.70,33.80,34.40,34.80,33.70,34.40,34.90,33.90,32.60,33.30,33.60,33.30,33.30,33.40,33.40,33.60,33.50,34.20,34.60,34.50,35.30,36.40,36.70,37.60,40.60,38.30,40.60,40.10,40.00,39.60,40.80,40.70,40.80,42.10,43.50,44.60,45.40,46.50,47.60,44.80,43.80,44.50,46.40,48.30,49.30,49.70,48.20,46.50,47.90,null,null,null,null,null,null,null,null,null],
+				        color: '#949CB0',
+			            tooltip: {
+			                valueSuffix: '%'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+			        },{
+			            name: 'Minimum Wage',
+			            type: 'line',
+			            lineWidth: 1,
+			            yAxis: 4,
+			            data: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,3.84 ,6.68 ,6.55 ,6.50 ,6.45 ,6.48 ,6.38 ,8.23 ,8.01 ,7.95 ,7.82 ,7.74 ,8.81 ,8.70 ,9.33 ,9.18 ,8.93 ,8.66 ,9.31 ,10.09 ,9.54 ,9.14 ,8.86 ,8.34 ,7.51 ,9.03 ,9.35 ,8.78 ,9.41 ,9.24 ,8.71 ,8.53 ,8.03 ,7.78 ,7.46 ,7.20 ,7.07 ,6.82 ,6.55 ,6.25 ,5.93 ,6.46 ,7.01 ,6.81 ,6.64 ,6.45 ,6.27 ,6.85 ,7.31 ,7.15 ,6.92 ,6.73 ,6.62 ,6.48 ,6.31 ,6.10 ,5.91 ,5.75 ,6.29 ,7.06 ,7.69 ,7.54 ,7.40 ,7.25 ,null,null,null,null,null,null],
+				        color: '#ABB0C1',
+			            tooltip: {
+			                valueSuffix: ' $'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+			        },{
+			            name: 'Crime rate',
+			            type: 'line',
+			            lineWidth: 1,
+			            data: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,880.5970149,776.119403,671.641791,626.8656716,656.7164179,626.8656716,611.9402985,611.9402985,597.0149254,567.1641791,597.0149254,626.8656716,731.3432836,761.1940299,731.3432836,701.4925373,716.4179104,731.3432836,731.3432836,805.9701493,850.7462687,865.6716418,835.8208955,880.5970149,955.2238806,1029.850746,1044.776119,1895.522388,1925.373134,2029.850746,2194.029851,2402.985075,2462.686567,2686.567164,3000,3402.985075,3701.492537,4000,4194.029851,3985.074627,4179.104478,4865.671642,5313.432836,5298.507463,5104.477612,5149.253731,5552.238806,5955.223881,5880.597015,5626.865672,5194.029851,5059.701493,5238.80597,5492.537313,5567.164179,5671.641791,5761.19403,5835.820896,5925.373134,5671.641791,5492.537313,5388.059701,5268.656716,5089.552239,4955.223881,4626.865672,4266.80,4124.00,4160.50,4125,4067,3977.3,3900.5,3825.9,3748.2,3673.2,3473.2,3350.4,3292.5,3246.1,null,null,null,null,null,null,null],
+				        color: '#C4C7D2',
+			            tooltip: {
+           					valueDecimals: 0,
+			                valueSuffix: ' / 100,000'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+			        }, {
+			            name: 'Prison population',
+			            type: 'line',
+			            lineWidth: 1,
+			            yAxis: 2,
+			            data: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,79,83,91,96,98,104,110,110,109,109,113,113,118,123,137,131,124,112,103,100,98,99,105,106,109,109,107,107,108,112,112,112,113,117,117,117,119,117,114,111,108,102,98,94,97,96,95,93,96,102,111,120,126,129,132,133,139,154,171,179,188,202,217,231,247,276,297,313,332,359,389,411,427,444,461,463,469,470,476,482,,,,,,,,,,,,,,,,],
+				        color: '#BACAE8',
+			            tooltip: {
+			                valueSuffix: ' prisoners / 100,000'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+
+			        }, {
+			            name: 'Number of billionaires',
+			            type: 'line',
+			            yAxis: 5,
+			            data: [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,140,191,220,265,260,275,192,342,366,422,323,308,336,360,538,497,476,587,691,793,946,1125,793,1011,1206,1226,1426,null,null,null,null,null,null],
+				        color: '#FF9800',
+			            tooltip: {
+			                valueSuffix: ' billionaires'
+			            },
+			            pointStart: Date.UTC(1900, 0, 1),
+			            pointInterval: 24 * 3600 * 1000 * 365,
+			            visible: true
+			        },{
+					    type : 'flags',
+					    name: 'Bat-History',
+					    yAxis: 1,
+					    lineWidth: 0,
+					    style: {
+							fontSize: '9px',
+							fontWeight: 'normal',
+							textAlign: 'center',
+							color: '#FFFFFF',
+							padding: '3px'
+						},
+					    shape : 'url(fatman-01.png)',
+					    stackDistance: 40,
+					    showInLegend: false,
+					    fillColor: '#FF9800',
+						color: '#FFFFFF',
+					    data : [/*{
+					        x : Date.UTC(1939, 0, 1),
+					        y: 90,
+					        title : '1939',
+					        text : 'Batman (Bruce Wayne) & Commissioner Gordon<br />appear for the first time in Detective Comics #27'
+					    },{
+					        x : Date.UTC(1940, 0, 1),
+					        y: 80,
+					        title : '1940',
+					        text : 'Robin (orphan trapeze artist Dick Grayson) joins Batman,<br />as do villains Catwoman and The Joker'
+					    },{
+					        x : Date.UTC(1941, 0, 1),
+					        y: 70,
+					        title : '1941',
+					        text : 'Batman\'s home town is finally named as Gotham<br />&amp; ornithology themed gangster Penguin joins the party'
+					    },{
+					        x : Date.UTC(1942, 0, 1),
+					        y: 86,
+					        title : '1942',
+					        text : 'First sighting of the Batsignal'
+					    },{
+					        x : Date.UTC(1943, 0, 1),
+					        y: 76,
+					        title : '1943',
+					        text : 'Batman makes his film debut in a 15 part serial<br />starring a somewhat rumpled Lewis Wilson'
+					    },{
+					        x : Date.UTC(1944, 0, 1),
+					        y: 66,
+					        title : '1944',
+					        text : 'Batman\'s world is becoming defined:<br />Batcave, Batsignal, Gotham City, Alfred the butler'
+					    },{
+					        x : Date.UTC(1948, 0, 1),
+					        y: 90,
+					        title : '1948',
+					        text : 'Riddle me this: which Bat-villain made his debut in 1948?<br />The Riddler. It\'s the Riddler.'
+					    },{
+					        x : Date.UTC(1949, 0, 1),
+					        y: 80,
+					        title : '1949',
+					        text : "'Batman and Robin', another 15 part film serial,<br />this time starring the rather svelte Robert Lowery"
+					    }
+					    ,{
+					        x : Date.UTC(1952, 0, 1),
+					        y: 70,
+					        title : '1952',
+					        text : "Batman finally meets Superman.<br />They discover each other's secrets and become firm friends"
+					    },{
+					        x : Date.UTC(1954, 0, 1),
+					        y: 90,
+					        title : '1954',
+					        text : "'Seduction of the Innocent' by Frederic Wertham<br />accuses comics of depraving children, seeing gay subtext in Batman"
+					    },{
+					        x : Date.UTC(1955, 0, 1),
+					        y: 80,
+					        title : '1955',
+					        text : "Ace the Bathound arrives. A dog who wears a mask<br />to hide his identity. While he fights crime."
+					    },{
+					        x : Date.UTC(1956, 0, 1),
+					        y: 70,
+					        title : '1956',
+					        text : 'Batwoman (Kathy Kane) joins the boys,<br />upsetting Robin with her close relationship with Batman'
+					    },{
+					        x : Date.UTC(1960, 0, 1),
+					        y: 90,
+					        title : '1960',
+					        text : "Batman joins the Justice League of America,<br />with Superman, Wonder Woman and the Flash, among others"
+					    },{
+					        x : Date.UTC(1964, 0, 1),
+					        y: 80,
+					        title : '1964',
+					        text : "Alfred dies (temporarily) and Dick’s Aunt Harriet<br />comes to live in Wayne Manor to look after the rich orphans"
+					    },{
+					        x : Date.UTC(1966, 0, 1),
+					        y: 70,
+					        title : '1966',
+					        text : "‘Batman’ the camp, almost psychedelic TV show,<br />with the inimitable Adam West as Batman, becomes hugely popular"
+					    },{
+					        x : Date.UTC(1967, 0, 1),
+					        y: 90,
+					        title : '1967',
+					        text : "Commissioner Jim Gordon's daughter<br />Barbara takes to the mask as Batgirl"
+					    },{
+					        x : Date.UTC(1970, 0, 1),
+					        y: 80,
+					        title : '1970',
+					        text : "Robin goes to college and Batman moves out of Wayne Manor<br />to downtown Gotham, in a new serious approach"
+					    },{
+					        x : Date.UTC(1973, 0, 1),
+					        y: 90,
+					        title : '1973',
+					        text : "Animation ‘Superfriends’ teams Wonder Woman, Superman, Aquaman<br />& Batman with two kids and a talking dog"
+					    },{
+					        x : Date.UTC(1983, 0, 1),
+					        y: 90,
+					        title : '1983',
+					        text : "Jason Todd becomes a new, streetwise Robin as<br />Dick Grayson quits to become a new superhero: Nightwing"
+					    },{
+					        x : Date.UTC(1986, 0, 1),
+					        y: 80,
+					        title : '1986',
+					        text : "Frank Miller’s grim Dark Knight Returns has<br />an old and angry Batman coming out of retirement"
+					    },{
+					        x : Date.UTC(1987, 0, 1),
+					        y: 85,
+					        title : '1987',
+					        text : "Frank Miller’s Batman: Year One gives Wayne a new, noir origin story<br />as he and Gordon take on a corrupt Gotham"
+					    },{
+					        x : Date.UTC(1989, 0, 1),
+					        y: 90,
+					        title : '1989',
+					        text : "Tim Burton’s film features a gothic, outsider Batman,<br />while in comics fans vote for Joker to kill Robin"
+					    },{
+					        x : Date.UTC(1990, 0, 1),
+					        y: 80,
+					        title : '1990',
+					        text : "Following Jason's (apparent) death, Tim Drake becomes Robin"
+					    },{
+					        x : Date.UTC(1992, 0, 1),
+					        y: 85,
+					        title : '1992',
+					        text : "‘Batman Returns’ to the cinema, starring Michael Keaton<br />& Michelle Pfeiffer as a whip wielding Catwoman"
+					    },{
+					        x : Date.UTC(1993, 0, 1),
+					        y: 90,
+					        title : '1993',
+					        text : "Bane, a villain for the Roid-rage generation, breaks Batman's back"
+					    },{
+					        x : Date.UTC(1995, 0, 1),
+					        y: 80,
+					        title : '1995',
+					        text : "‘Batman Forever’, stars Val Kilmer<br />- it leads one critic to ask whether the title is a threat"
+					    },{
+					        x : Date.UTC(1997, 0, 1),
+					        y: 85,
+					        title : '1997',
+					        text : "‘Batman and Robin’, directed by Joel Schumacher,<br />kills the film franchise with leaden quips and bat-nipples"
+					    },*/{
+					        x : Date.UTC(2004, 0, 1),
+					        y: 90,
+					        title : '2004',
+					        text : "Stephanie Brown becomes Robin, replacing Tim Drake,<br />who replaced Jason Todd. There is a Catwoman film."
+					    },{
+					        x : Date.UTC(2005, 0, 1),
+					        y: 80,
+					        title : '2005',
+					        text : "‘Batman Begins’ starring Christian Bale takes a ‘realistic’ look<br />at a billionaire who punches criminals for a hobby"
+					    },{
+					        x : Date.UTC(2008, 0, 1),
+					        y: 70,
+					        title : '2008',
+					        text : "Dark Knight’ features the acclaimed Heath Ledger as the Joker<br />in a dramatisation of philosophical arguments"
+					    },{
+					        x : Date.UTC(2009, 0, 1),
+					        y: 85,
+					        title : '2009',
+					        text : "Batman dies, time travels, punches his way back to the future,<br />where Dick Grayson is Batman and Damian Wayne, Bruce's son, is Robin"
+					    },{
+					        x : Date.UTC(2012, 0, 1),
+					        y: 75,
+					        title : '2012',
+					        text : "Tom Hardy stars as Bane in Nolan's Dark Knight Rises,<br />with a vocal performance as incomprehensible as the plot"
+					    }]
+			        }]
+
+			    });
+			});
+		</script>
+	</head>
+	<body>
+		<div id="container" style="width:100%; height:400px;"></div>
+	</body>
+</html>
